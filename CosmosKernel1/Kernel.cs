@@ -41,7 +41,7 @@ namespace CosmosKernel1
             {
                 if (input.IndexOf("date ") == 0)
                 {
-                    setDate(input.Substring(5, input.Length - 4));
+                    // setDate(input.Substring(5, input.Length - 4));
                 }
                 Console.WriteLine(getDate());
             }
@@ -49,7 +49,7 @@ namespace CosmosKernel1
             {
                 if (input.IndexOf("time ") == 0)
                 {
-                    setTime(input.Substring(5, input.Length - 4));
+                    // setTime(input.Substring(5, input.Length - 4));
                 }
                 Console.WriteLine(getTime());
             }

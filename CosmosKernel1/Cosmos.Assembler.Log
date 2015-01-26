@@ -5977,16 +5977,7 @@ Method 'SystemVoidCosmosKernel1KernelRun'
 	0 Ldloc
 	1 LdStr
 	2 Callvirt
-	1 Branch
-	0 Ldarg
-	1 Ldloc
-	2 Ldc_I4
-	3 Ldloc
-	4 Callvirt
-	4 Ldc_I4
-	5 Sub
-	4 Callvirt
-	2 Call
+	1 Pop
 	0 Ldarg
 	1 Call
 	1 Call
@@ -5998,16 +5989,7 @@ Method 'SystemVoidCosmosKernel1KernelRun'
 	0 Ldloc
 	1 LdStr
 	2 Callvirt
-	1 Branch
-	0 Ldarg
-	1 Ldloc
-	2 Ldc_I4
-	3 Ldloc
-	4 Callvirt
-	4 Ldc_I4
-	5 Sub
-	4 Callvirt
-	2 Call
+	1 Pop
 	0 Ldarg
 	1 Call
 	1 Call
@@ -7673,54 +7655,6 @@ Method 'SystemVoidSystemCollectionsGenericList1CosmosSystemNetworkIPv4OutgoingBu
 	3 Add
 	2 Stfld
 	0 Ret
-Method 'SystemVoidCosmosKernel1KernelsetDateSystemString'
-	0 Ldarg
-	1 Ldc_I4
-	2 Newarr
-	2 Stloc
-	1 Ldloc
-	2 Ldc_I4
-	3 Ldc_I4
-	4 Stelem_I2
-	1 Ldloc
-	2 Callvirt
-	1 Stloc
-	0 Ldloc
-	1 Ldc_I4
-	2 Ldelem_Ref
-	1 Call
-	1 Stloc
-	0 Ldloc
-	1 Ldc_I4
-	2 Ldelem_Ref
-	1 Call
-	1 Stloc
-	0 Ldloc
-	1 Ldc_I4
-	2 Ldelem_Ref
-	1 Call
-	1 Stloc
-	0 Ldarg
-	1 Call
-	0 Ldarg
-	1 Ldarg
-	2 Ldfld
-	2 Ldloc
-	3 Sub
-	2 Stfld
-	0 Ldarg
-	1 Ldarg
-	2 Ldfld
-	2 Ldloc
-	3 Sub
-	2 Stfld
-	0 Ldarg
-	1 Ldarg
-	2 Ldfld
-	2 Ldloc
-	3 Sub
-	2 Stfld
-	0 Ret
 Method 'SystemStringCosmosKernel1KernelgetDate'
 	0 Ldarg
 	1 Call
@@ -7771,54 +7705,6 @@ Method 'SystemStringCosmosKernel1KernelgetDate'
 	0 Ldloc
 	1 Call
 	1 Ret
-Method 'SystemVoidCosmosKernel1KernelsetTimeSystemString'
-	0 Ldarg
-	1 Ldc_I4
-	2 Newarr
-	2 Stloc
-	1 Ldloc
-	2 Ldc_I4
-	3 Ldc_I4
-	4 Stelem_I2
-	1 Ldloc
-	2 Callvirt
-	1 Stloc
-	0 Ldloc
-	1 Ldc_I4
-	2 Ldelem_Ref
-	1 Call
-	1 Stloc
-	0 Ldloc
-	1 Ldc_I4
-	2 Ldelem_Ref
-	1 Call
-	1 Stloc
-	0 Ldloc
-	1 Ldc_I4
-	2 Ldelem_Ref
-	1 Call
-	1 Stloc
-	0 Ldarg
-	1 Call
-	0 Ldarg
-	1 Ldarg
-	2 Ldfld
-	2 Ldloc
-	3 Sub
-	2 Stfld
-	0 Ldarg
-	1 Ldarg
-	2 Ldfld
-	2 Ldloc
-	3 Sub
-	2 Stfld
-	0 Ldarg
-	1 Ldarg
-	2 Ldfld
-	2 Ldloc
-	3 Sub
-	2 Stfld
-	0 Ret
 Method 'SystemStringCosmosKernel1KernelgetTime'
 	0 Ldarg
 	1 Call
@@ -9917,13 +9803,6 @@ Method 'SystemStringCosmosSystemPlugsSystemSystemConsoleImplReadLine'
 	2 Br
 	2 Ldloc
 	3 Ret
-Method 'SystemStringarraySystemStringSplitSystemChararray'
-	0 Ldarg
-	1 Ldarg
-	2 Ldc_I4
-	3 Ldc_I4
-	4 Call
-	1 Ret
 Method 'SystemVoidSystemTextUnicodeEncodingctorSystemBooleanSystemBooleanSystemBoolean'
 	0 Ldarg
 	1 Ldc_I4
@@ -12605,186 +12484,6 @@ Method 'SystemVoidCosmosSystemNetworkARPARPPacketctorCosmosCoreNetworkMACAddress
 	0 Nop
 	0 Nop
 	0 Ret
-Method 'SystemStringarraySystemStringSplitInternalSystemChararraySystemInt32SystemStringSplitOptions'
-	0 Ldarg
-	1 Ldc_I4
-	2 Branch
-	0 LdStr
-	1 LdStr
-	2 Call
-	2 Newobj
-	1 Throw
-	0 Ldarg
-	1 Ldc_I4
-	2 Branch
-	0 Ldarg
-	1 Ldc_I4
-	2 Branch
-	0 LdStr
-	1 Ldc_I4
-	2 Newarr
-	2 Stloc
-	1 Ldloc
-	2 Ldc_I4
-	3 Ldarg
-	4 Box
-	4 Stelem_Ref
-	1 Ldloc
-	2 Call
-	1 Newobj
-	1 Throw
-	0 Ldarg
-	1 Ldc_I4
-	2 Ceq
-	1 Stloc
-	0 Ldarg
-	1 Branch
-	0 Ldloc
-	1 Branch
-	0 Ldarg
-	1 Call
-	1 Branch
-	0 Ldc_I4
-	1 Newarr
-	1 Ret
-	1 Ldarg
-	2 Call
-	2 Newarr
-	2 Stloc
-	1 Ldarg
-	2 Ldarg
-	3 Ldloca
-	4 Call
-	2 Stloc
-	1 Ldloc
-	2 Branch
-	1 Ldarg
-	2 Ldc_I4
-	3 Branch
-	1 Ldc_I4
-	2 Newarr
-	2 Stloc
-	1 Ldloc
-	2 Ldc_I4
-	3 Ldarg
-	4 Stelem_Ref
-	1 Ldloc
-	2 Ret
-	2 Ldloc
-	3 Branch
-	2 Ldarg
-	3 Ldloc
-	4 Ldnull
-	5 Ldloc
-	6 Ldarg
-	7 Call
-	3 Ret
-	3 Ldarg
-	4 Ldloc
-	5 Ldnull
-	6 Ldloc
-	7 Ldarg
-	8 Call
-	4 Ret
-Method 'SystemInt32CosmosSystemPlugsSystemInt32ImplParseSystemString'
-	0 Nop
-	0 Ldc_I4
-	1 Stloc
-	0 Ldc_I4
-	1 Stloc
-	0 Ldc_I4
-	1 Stloc
-	0 Ldarg
-	1 Callvirt
-	1 Ldc_I4
-	2 Clt
-	1 Stloc
-	0 Ldloc
-	1 Branch
-	0 Nop
-	0 Ldarg
-	1 Ldc_I4
-	2 Callvirt
-	1 Ldc_I4
-	2 Ceq
-	1 Ldc_I4
-	2 Ceq
-	1 Stloc
-	0 Ldloc
-	1 Branch
-	0 Ldc_I4
-	1 Stloc
-	0 Ldarg
-	1 Ldc_I4
-	2 Callvirt
-	1 Ldc_I4
-	2 Ceq
-	1 Ldc_I4
-	2 Ceq
-	1 Stloc
-	0 Ldloc
-	1 Branch
-	0 Nop
-	0 Ldc_I4
-	1 Stloc
-	0 Ldc_I4
-	1 Stloc
-	0 Nop
-	0 Nop
-	0 Ldloc
-	1 Stloc
-	0 Br
-	0 Nop
-	0 LdStr
-	1 Ldarg
-	2 Ldloc
-	3 Callvirt
-	2 Callvirt
-	1 Stloc
-	0 Ldloc
-	1 Ldc_I4
-	2 Ceq
-	1 Ldc_I4
-	2 Ceq
-	1 Stloc
-	0 Ldloc
-	1 Branch
-	0 Nop
-	0 Newobj
-	1 Throw
-	0 Ldloc
-	1 Ldc_I4
-	2 Mul
-	1 Ldloc
-	2 Add
-	1 Stloc
-	0 Nop
-	0 Ldloc
-	1 Ldc_I4
-	2 Add
-	1 Stloc
-	0 Ldloc
-	1 Ldarg
-	2 Callvirt
-	2 Clt
-	1 Stloc
-	0 Ldloc
-	1 Branch
-	0 Ldloc
-	1 Ldc_I4
-	2 Ceq
-	1 Stloc
-	0 Ldloc
-	1 Branch
-	0 Ldloc
-	1 Ldc_I4
-	2 Mul
-	1 Stloc
-	0 Ldloc
-	1 Stloc
-	0 Br
-	0 Ldloc
-	1 Ret
 Method 'SystemVoidSystemTextEncodingctorSystemInt32'
 	0 Ldarg
 	1 Ldc_I4
@@ -13972,368 +13671,6 @@ Method 'SystemVoidCosmosSystemNetworkEthernetPacketctorCosmosCoreNetworkMACAddre
 	0 Nop
 	0 Nop
 	0 Ret
-Method 'SystemInt32SystemStringMakeSeparatorListSystemChararraySystemInt32array'
-	0 Ldc_I4
-	1 Stloc
-	0 Ldarg
-	1 Branch
-	0 Ldarg
-	1 Ldlen
-	1 Conv_I4
-	1 Branch
-	0 Ldarg
-	1 Ldflda
-	1 Stloc
-	0 Ldc_I4
-	1 Stloc
-	0 Br
-	0 Ldloc
-	1 Conv_I4
-	1 Ldloc
-	2 Conv_I4
-	2 Ldc_I4
-	3 Mul
-	2 Add
-	1 Ldind_U2
-	1 Call
-	1 Branch
-	0 Ldarg
-	1 Ldind_Ref
-	1 Ldloc
-	2 Dup
-	3 Ldc_I4
-	4 Add
-	3 Stloc
-	2 Ldloc
-	3 Stelem_I4
-	0 Ldloc
-	1 Ldc_I4
-	2 Add
-	1 Stloc
-	0 Ldloc
-	1 Ldarg
-	2 Call
-	2 Branch
-	0 Ldloc
-	1 Ldarg
-	2 Ldind_Ref
-	2 Ldlen
-	2 Conv_I4
-	2 Branch
-	0 Ldc_I4
-	1 Conv_U4
-	1 Stloc
-	0 Br
-	0 Ldarg
-	1 Ldind_Ref
-	1 Ldlen
-	1 Conv_I4
-	1 Stloc
-	0 Ldarg
-	1 Ldlen
-	1 Conv_I4
-	1 Stloc
-	0 Ldarg
-	1 Ldflda
-	1 Stloc
-	0 Ldarg
-	1 Dup
-	2 Stloc
-	1 Branch
-	0 Ldloc
-	1 Ldlen
-	1 Conv_I4
-	1 Branch
-	0 Ldc_I4
-	1 Conv_U4
-	1 Stloc
-	0 Br
-	0 Ldloc
-	1 Ldc_I4
-	2 Ldelema
-	1 Stloc
-	0 Ldc_I4
-	1 Stloc
-	0 Br
-	0 Ldloc
-	1 Conv_I4
-	1 Stloc
-	0 Ldc_I4
-	1 Stloc
-	0 Br
-	0 Ldloc
-	1 Conv_I4
-	1 Ldloc
-	2 Conv_I4
-	2 Ldc_I4
-	3 Mul
-	2 Add
-	1 Ldind_U2
-	1 Ldloc
-	2 Ldind_U2
-	2 Branch
-	0 Ldarg
-	1 Ldind_Ref
-	1 Ldloc
-	2 Dup
-	3 Ldc_I4
-	4 Add
-	3 Stloc
-	2 Ldloc
-	3 Stelem_I4
-	0 Br
-	0 Ldloc
-	1 Ldc_I4
-	2 Add
-	1 Stloc
-	0 Ldloc
-	1 Ldc_I4
-	2 Conv_I4
-	2 Add
-	1 Stloc
-	0 Ldloc
-	1 Ldloc
-	2 Branch
-	0 Ldloc
-	1 Ldc_I4
-	2 Add
-	1 Stloc
-	0 Ldloc
-	1 Ldarg
-	2 Call
-	2 Branch
-	0 Ldloc
-	1 Ldloc
-	2 Branch
-	0 Ldc_I4
-	1 Conv_U4
-	1 Stloc
-	0 Ldc_I4
-	1 Conv_U4
-	1 Stloc
-	0 Ldloc
-	1 Ret
-Method 'SystemStringarraySystemStringInternalSplitOmitEmptyEntriesSystemInt32arraySystemInt32arraySystemInt32SystemInt32'
-	0 Ldarg
-	1 Ldarg
-	2 Branch
-	0 Ldarg
-	1 Br
-	1 Ldarg
-	2 Ldc_I4
-	3 Add
-	2 Stloc
-	1 Ldloc
-	2 Newarr
-	2 Stloc
-	1 Ldc_I4
-	2 Stloc
-	1 Ldc_I4
-	2 Stloc
-	1 Ldc_I4
-	2 Stloc
-	1 Br
-	1 Ldarg
-	2 Ldloc
-	3 Ldelem_I4
-	2 Ldloc
-	3 Sub
-	2 Ldc_I4
-	3 Branch
-	1 Ldloc
-	2 Ldloc
-	3 Dup
-	4 Ldc_I4
-	5 Add
-	4 Stloc
-	3 Ldarg
-	4 Ldloc
-	5 Ldarg
-	6 Ldloc
-	7 Ldelem_I4
-	6 Ldloc
-	7 Sub
-	6 Call
-	4 Stelem_Ref
-	1 Ldarg
-	2 Ldloc
-	3 Ldelem_I4
-	2 Ldarg
-	3 Branch
-	2 Ldarg
-	3 Ldloc
-	4 Ldelem_I4
-	3 Br
-	3 Ldc_I4
-	4 Add
-	3 Stloc
-	2 Ldloc
-	3 Ldarg
-	4 Ldc_I4
-	5 Sub
-	4 Branch
-	2 Br
-	2 Ldloc
-	3 Ldarg
-	4 Branch
-	3 Ldarg
-	4 Ldloc
-	5 Ldelem_I4
-	4 Br
-	4 Ldc_I4
-	5 Add
-	4 Stloc
-	3 Ldloc
-	4 Ldarg
-	5 Ldc_I4
-	6 Sub
-	5 Branch
-	3 Ldloc
-	4 Ldarg
-	5 Ldloc
-	6 Ldc_I4
-	7 Add
-	6 Dup
-	7 Stloc
-	6 Ldelem_I4
-	5 Branch
-	3 Br
-	3 Ldloc
-	4 Ldc_I4
-	5 Add
-	4 Stloc
-	3 Ldloc
-	4 Ldarg
-	5 Branch
-	3 Ldloc
-	4 Ldarg
-	5 Call
-	5 Branch
-	3 Ldloc
-	4 Ldarg
-	5 Call
-	5 Branch
-	3 Ldloc
-	4 Ldloc
-	5 Dup
-	6 Ldc_I4
-	7 Add
-	6 Stloc
-	5 Ldarg
-	6 Ldloc
-	7 Call
-	6 Stelem_Ref
-	3 Ldloc
-	4 Stloc
-	3 Ldloc
-	4 Ldloc
-	5 Branch
-	3 Ldloc
-	4 Newarr
-	4 Stloc
-	3 Ldc_I4
-	4 Stloc
-	3 Br
-	3 Ldloc
-	4 Ldloc
-	5 Ldloc
-	6 Ldloc
-	7 Ldelem_Ref
-	6 Stelem_Ref
-	3 Ldloc
-	4 Ldc_I4
-	5 Add
-	4 Stloc
-	3 Ldloc
-	4 Ldloc
-	5 Branch
-	3 Ldloc
-	4 Ret
-Method 'SystemStringarraySystemStringInternalSplitKeepEmptyEntriesSystemInt32arraySystemInt32arraySystemInt32SystemInt32'
-	0 Ldc_I4
-	1 Stloc
-	0 Ldc_I4
-	1 Stloc
-	0 Ldarg
-	1 Ldc_I4
-	2 Sub
-	1 Starg
-	0 Ldarg
-	1 Ldarg
-	2 Branch
-	0 Ldarg
-	1 Br
-	1 Ldarg
-	2 Stloc
-	1 Ldloc
-	2 Ldc_I4
-	3 Add
-	2 Newarr
-	2 Stloc
-	1 Ldc_I4
-	2 Stloc
-	1 Br
-	1 Ldloc
-	2 Ldloc
-	3 Dup
-	4 Ldc_I4
-	5 Add
-	4 Stloc
-	3 Ldarg
-	4 Ldloc
-	5 Ldarg
-	6 Ldloc
-	7 Ldelem_I4
-	6 Ldloc
-	7 Sub
-	6 Call
-	4 Stelem_Ref
-	1 Ldarg
-	2 Ldloc
-	3 Ldelem_I4
-	2 Ldarg
-	3 Branch
-	2 Ldarg
-	3 Ldloc
-	4 Ldelem_I4
-	3 Br
-	3 Ldc_I4
-	4 Add
-	3 Stloc
-	2 Ldloc
-	3 Ldc_I4
-	4 Add
-	3 Stloc
-	2 Ldloc
-	3 Ldloc
-	4 Branch
-	2 Ldloc
-	3 Ldarg
-	4 Call
-	4 Branch
-	2 Ldloc
-	3 Ldarg
-	4 Call
-	4 Branch
-	2 Ldloc
-	3 Ldc_I4
-	4 Branch
-	2 Ldloc
-	3 Ldloc
-	4 Ldarg
-	5 Ldloc
-	6 Call
-	5 Stelem_Ref
-	2 Br
-	2 Ldloc
-	3 Ldloc
-	4 Branch
-	2 Ldloc
-	3 Ldloc
-	4 Ldsfld
-	5 Stelem_Ref
-	2 Ldloc
-	3 Ret
 Method 'SystemVoidSystemTextUnicodeEncodingSetDefaultFallbacks'
 	0 Ldarg
 	1 Ldfld
@@ -15386,13 +14723,6 @@ Method 'SystemStringCosmosSystemNetworkARPARPPacketToString'
 	0 Br
 	0 Ldloc
 	1 Ret
-Method 'SystemStringCosmosIL2CPUILCustomImplementationsSystemEnvironmentImplGetResourceStringSystemStringSystemObjectarray'
-	0 Nop
-	0 Ldarg
-	1 Stloc
-	0 Br
-	0 Ldloc
-	1 Ret
 Method 'SystemTextEncoderFallbackSystemTextEncoderFallbackget_ExceptionFallback'
 	0 Volatile
 	0 Ldsfld
@@ -16338,21 +15668,6 @@ Method 'SystemUInt16CosmosSystemNetworkARPARPPacketget_Operation'
 	0 Br
 	0 Ldloc
 	1 Ret
-Method 'SystemBooleanCosmosIL2CPUILCustomImplementationsSystemCharImplIsWhiteSpaceSystemChar'
-	0 Nop
-	0 Ldarg
-	1 Ldc_I4
-	2 Branch
-	0 Ldarg
-	1 Ldc_I4
-	2 Ceq
-	1 Br
-	1 Ldc_I4
-	2 Nop
-	2 Stloc
-	1 Br
-	1 Ldloc
-	2 Ret
 Method 'SystemVoidSystemThreadingMonitorEnterSystemObjectSystemBoolean'
 	0 Ldarg
 	1 Ldind_I1
@@ -17398,6 +16713,13 @@ Method 'SystemBooleanSystemCharIsHighSurrogateSystemChar'
 	2 Ret
 	2 Ldc_I4
 	3 Ret
+Method 'SystemStringCosmosIL2CPUILCustomImplementationsSystemEnvironmentImplGetResourceStringSystemStringSystemObjectarray'
+	0 Nop
+	0 Ldarg
+	1 Stloc
+	0 Br
+	0 Ldloc
+	1 Ret
 Method 'SystemVoidCosmosCorePlugsIOPortImplWrite16SystemUInt16SystemUInt16'
 Emitted using MethodAssembler
 Method 'SystemUInt32CosmosCorePCIDeviceGetAddressBaseSystemUInt32SystemUInt32SystemUInt32'
