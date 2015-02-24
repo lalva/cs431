@@ -14,27 +14,12 @@ namespace CosmosKernel1
         private int minute;
         private int second;
 
-        /*
-        private int monthOffset;
-        private int dayOffset;
-        private int yearOffset;
-        private int hourOffset;
-        private int minuteOffset;
-        private int secondOffset;
-        */
-
         private FileDirectory files;
         private VariableStorage variables;
 
         protected override void BeforeRun()
         {
-            updateTime();
-            /*monthOffset = 0;
-            dayOffset = 0;
-            yearOffset = 0;
-            hourOffset = 0;
-            minuteOffset = 0;
-            secondOffset = 0;*/
+            UpdateTime();
             files = new FileDirectory();
             variables = new VariableStorage();
             Console.WriteLine("Cosmos booted successfully. Type a line of text to get it echoed back.");
@@ -45,71 +30,53 @@ namespace CosmosKernel1
             Console.Write("Input: ");
             string input = Console.ReadLine();
 
-            // SHOW DATE
-            if (input.IndexOf("date") == 0)
+            ProcessInput(input);
+        }
+
+        private void ProcessInput(string input)
+        {
+            if (input.CompareTo("\n") == 0 || input.CompareTo("") == 0)
             {
-                /*if (input.IndexOf("date ") == 0)
-                {
-                    setDate(input.Substring(5, input.Length - 4));
-                }*/
-                Console.WriteLine(getDate());
+                return;
+            }
+            string[] args = input.Split(' ');
+            string command = args[0];
+            string rest = input.Substring(command.Length).Trim();
+
+            // SHOW DATE
+            if (command.CompareTo("date") == 0)
+            {
+                Console.WriteLine(GetDate());
             }
 
             // SHOW TIME
-            else if (input.IndexOf("time") == 0)
+            else if (command.CompareTo("time") == 0)
             {
-                /*if (input.IndexOf("time ") == 0)
-                {
-                    setTime(input.Substring(5, input.Length - 4));
-                }*/
-                Console.WriteLine(getTime());
+                Console.WriteLine(GetTime());
             }
 
             // CREATE FILE
-            else if (input.IndexOf("create ") == 0)
+            else if (command.CompareTo("create") == 0)
             {
-                string filename = input.Substring(7, input.Length - 6);
-                if (filename.IndexOf(' ') != -1 )
-                {
-                    Console.WriteLine("Spaces are not allowed in the filename");
-                    return;
-                }
-                string contents = "";
-                Console.WriteLine("The following lines will be saved to your file once you enter 'save'.");
-                while (true)
-                {
-                    string file_input = Console.ReadLine();
-                    if (file_input.CompareTo("save") == 0)
-                    {
-                        File file = new File(filename, contents, getDate() + " " + getTime());
-                        files.Add(filename, file);
-                        Console.WriteLine(filename + " has been saved.");
-                        return;
-                    }
-                    else
-                    {
-                        contents += file_input + "\n";
-                    }
-                }
+                CreateFile(rest);
             }
 
             // SHOW FILES
-            else if (input.IndexOf("dir") == 0)
+            else if (command.CompareTo("dir") == 0)
             {
-                Console.WriteLine("Name\t\tExt\t\tCreated\t\t\t\tSize");
+                Console.WriteLine("Name\t\tExt\t\tCreated\t\t\t\t\tSize");
                 for (int i = 0; i < files.Length(); i++)
                 {
-                    Console.WriteLine(files.getFile(i).ToString());
+                    Console.WriteLine(files.GetFile(i).ToString());
                 }
             }
 
             // SHOW VARIABLE
-            else if (input.IndexOf("out ") == 0)
+            else if (command.CompareTo("out") == 0)
             {
-                string key = input.Substring(4, input.Length - 3);
-                if (variables.ContainsKey(key))
+                if (variables.ContainsKey(rest))
                 {
-                    Console.WriteLine(key + " = " + variables.GetValue(key));
+                    Console.WriteLine(rest + " = " + variables.GetValue(rest));
                 }
                 else
                 {
@@ -118,31 +85,93 @@ namespace CosmosKernel1
             }
 
             // CREATE VARIABLE
-            else if (input.IndexOf(" = ") > 0)
+            else if (command.CompareTo("set") == 0)
             {
-                string[] vars = input.Split('=');
-                if (vars.Length != 2)
-                {
-                    Console.WriteLine("Incorrect use of variable assignment.");
-                    return;
-                }
-                string variable = vars[0].Trim();
-                string expression = vars[1].Trim();
-                string value = ExecuteExpression(expression);
-                if (value.IndexOf("Error:") != -1)
-                {
-                    Console.WriteLine(value);
-                    return;
-                }
-                Console.WriteLine(variable + " = " + value);
-                variables.Add(variable, value);
+                SetVariable(rest);
+            }
+
+            // RUN .BAT FILE
+            else if (command.CompareTo("run") == 0)
+            {
+                RunBatchFile(rest);
             }
 
             // DEFAULT ACTION
             else
             {
-                Console.Write("Text typed: ");
-                Console.WriteLine(input);
+                Console.WriteLine("Text typed: "+input);
+            }
+        }
+
+        private void SetVariable(string expr)
+        {
+            string[] vars = expr.Split('=');
+            if (vars.Length != 2)
+            {
+                Console.WriteLine("Incorrect use of variable assignment.");
+                return;
+            }
+            string variable = vars[0].Trim();
+            string expression = vars[1].Trim();
+            string value = ExecuteExpression(expression);
+            if (value.IndexOf("Error:") != -1)
+            {
+                Console.WriteLine(value);
+                return;
+            }
+            Console.WriteLine("You have set "+variable + " = " + value);
+            variables.Add(variable, value);
+        }
+
+        private void RunBatchFile(string filename)
+        {
+            string[] parts = filename.Split('.');
+            string ext = parts[parts.Length - 1];
+            if (ext.CompareTo("bat") == 0)
+            {
+                File file = files.Find(filename);
+                if (file != null)
+                {
+                    string[] lines = file.GetContents().Split('\n');
+                    for (int i = 0; i < lines.Length; i++)
+                    {
+                        ProcessInput(lines[i]);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(filename + " does not exist.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("You can only run files with an extension of .bat");
+            }
+        }
+
+        private void CreateFile(string filename)
+        {
+            if (filename.IndexOf(' ') != -1)
+            {
+                Console.WriteLine("Spaces are not allowed in the filename");
+                return;
+            }
+            string contents = "";
+            Console.WriteLine("The following lines will be saved to your file once you enter 'save'.");
+            while (true)
+            {
+                string file_input = Console.ReadLine();
+                if (file_input.CompareTo("save") == 0)
+                {
+                    File file = new File(filename, contents, GetDate() + " " + GetTime());
+                    files.Add(filename, file);
+                    Console.WriteLine(filename + " has been saved.");
+                    return;
+                }
+                else
+                {
+                    contents += file_input + "\n";
+                }
             }
         }
 
@@ -221,31 +250,8 @@ namespace CosmosKernel1
             }
             return "Error: Invalid operator";
         }
-        /*
-        protected void setTime(string userTime)
-        {
-            string[] times = userTime.Split(':');
-            int userHour = Int32.Parse(times[0]);
-            int userMinute = Int32.Parse(times[1]);
-            int userSecond = Int32.Parse(times[2]);
-            updateTime();
-            hourOffset = hour - userHour;
-            minuteOffset = minute - userMinute;
-            secondOffset = second - userSecond;
-        }
-        protected void setDate(string userDate)
-        {
-            string[] dates = userDate.Split('/');
-            int userMonth = Int32.Parse(dates[0]);
-            int userDay = Int32.Parse(dates[1]);
-            int userYear = Int32.Parse(dates[2]);
-            updateTime();
-            monthOffset = month - userMonth;
-            dayOffset = dayOfMonth - userDay;
-            yearOffset = year - userYear;
-        }
-        */
-        protected void updateTime()
+
+        protected void UpdateTime()
         {
             hour = Cosmos.Hardware.RTC.Hour;
             minute = Cosmos.Hardware.RTC.Minute;
@@ -255,16 +261,16 @@ namespace CosmosKernel1
             year = (Cosmos.Hardware.RTC.Century * 100) + Cosmos.Hardware.RTC.Year;
         }
 
-        protected string getTime()
+        protected string GetTime()
         {
-            updateTime();
-            return (hour/* - hourOffset*/).ToString() + ":" + (minute/* - minuteOffset*/).ToString() + ":" + (second/* - secondOffset*/).ToString();
+            UpdateTime();
+            return hour.ToString() + ":" + minute.ToString() + ":" + second.ToString();
         }
 
-        protected string getDate()
+        protected string GetDate()
         {
-            updateTime();
-            return (month/* - monthOffset*/).ToString() + "/" + (dayOfMonth/* - dayOffset*/).ToString() + "/" + (year/* - yearOffset*/).ToString();
+            UpdateTime();
+            return month.ToString() + "/" + dayOfMonth.ToString() + "/" + year.ToString();
         }
     }
 
@@ -288,6 +294,11 @@ namespace CosmosKernel1
         {
             return name + "\t\t" + ext + "\t\t" + created_at + "\t\t" + (contents.Length * 2) + " Bytes";
         }
+
+        public string GetContents()
+        {
+            return contents;
+        }
     }
 
     public class FileDirectory
@@ -306,7 +317,7 @@ namespace CosmosKernel1
 
         public void Add(string filename, File file)
         {
-            int i = index(filename);
+            int i = Index(filename);
             if (i >= 0)
             {
                 files[i] = file;
@@ -319,7 +330,7 @@ namespace CosmosKernel1
             }
         }
 
-        private int index(string name)
+        private int Index(string name)
         {
             for (int i = 0; i < count; i++)
             {
@@ -336,12 +347,22 @@ namespace CosmosKernel1
             return count;
         }
 
-        public string getFilename(int i)
+        public File Find(string filename)
+        {
+            int i = Index(filename);
+            if (i >= 0)
+            {
+                return files[i];
+            }
+            return null;
+        }
+
+        public string GetFilename(int i)
         {
             return filenames[i];
         }
 
-        public File getFile(int i)
+        public File GetFile(int i)
         {
             return files[i];
         }
@@ -363,7 +384,7 @@ namespace CosmosKernel1
 
         public void Add(string name, string val)
         {
-            int i = index(name);
+            int i = Index(name);
             if (i >= 0)
             {
                 values[i] = val;
@@ -376,7 +397,7 @@ namespace CosmosKernel1
             }
         }
 
-        private int index(string key)
+        private int Index(string key)
         {
             for (int i = 0; i < count; i++)
             {
@@ -390,12 +411,12 @@ namespace CosmosKernel1
 
         public bool ContainsKey(string name)
         {
-            return index(name) >= 0;
+            return Index(name) >= 0;
         }
 
         internal string GetValue(string name)
         {
-            int num = index(name);
+            int num = Index(name);
             if (num < 0)
             {
                 return "";
