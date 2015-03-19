@@ -7653,6 +7653,10 @@ Method 'SystemVoidCosmosKernel1KernelProcessInputSystemString'
 	1 LdStr
 	2 Callvirt
 	1 Branch
+	0 Ldarg
+	1 LdStr
+	2 Callvirt
+	1 Branch
 	0 Ret
 	0 Ldarg
 	1 Ldc_I4
@@ -7759,6 +7763,32 @@ Method 'SystemVoidCosmosKernel1KernelProcessInputSystemString'
 	1 Branch
 	0 Ldarg
 	1 Ldloc
+	2 Ldc_I4
+	3 Newarr
+	3 Stloc
+	2 Ldloc
+	3 Ldc_I4
+	4 Ldc_I4
+	5 Stelem_I2
+	2 Ldloc
+	3 Callvirt
+	2 Call
+	0 Ret
+	0 Ldloc
+	1 LdStr
+	2 Callvirt
+	1 Branch
+	0 Ldarg
+	1 Ldloc
+	2 Call
+	0 Ret
+	0 Ldarg
+	1 LdStr
+	2 Callvirt
+	1 Ldc_I4
+	2 Branch
+	0 Ldarg
+	1 Ldarg
 	2 Call
 	0 Ret
 	0 LdStr
@@ -9975,60 +10005,6 @@ Method 'SystemStringCosmosKernel1VariableStorageGetValueSystemString'
 	2 Ldloc
 	3 Ldelem_Ref
 	2 Ret
-Method 'SystemVoidCosmosKernel1KernelSetVariableSystemString'
-	0 Ldarg
-	1 Ldc_I4
-	2 Newarr
-	2 Stloc
-	1 Ldloc
-	2 Ldc_I4
-	3 Ldc_I4
-	4 Stelem_I2
-	1 Ldloc
-	2 Callvirt
-	1 Stloc
-	0 Ldloc
-	1 Ldlen
-	1 Conv_I4
-	1 Ldc_I4
-	2 Branch
-	0 LdStr
-	1 Call
-	0 Ret
-	0 Ldloc
-	1 Ldc_I4
-	2 Ldelem_Ref
-	1 Callvirt
-	1 Stloc
-	0 Ldloc
-	1 Ldc_I4
-	2 Ldelem_Ref
-	1 Callvirt
-	1 Stloc
-	0 Ldarg
-	1 Ldloc
-	2 Call
-	1 Stloc
-	0 Ldloc
-	1 LdStr
-	2 Callvirt
-	1 Ldc_I4
-	2 Branch
-	0 Ldloc
-	1 Call
-	0 Ret
-	0 LdStr
-	1 Ldloc
-	2 LdStr
-	3 Ldloc
-	4 Call
-	1 Call
-	0 Ldarg
-	1 Ldfld
-	1 Ldloc
-	2 Ldloc
-	3 Callvirt
-	0 Ret
 Method 'SystemVoidCosmosKernel1KernelRunBatchFileSystemString'
 	0 Ldarg
 	1 Ldc_I4
@@ -10097,6 +10073,134 @@ Method 'SystemVoidCosmosKernel1KernelRunBatchFileSystemString'
 	0 Ret
 	0 LdStr
 	1 Call
+	0 Ret
+Method 'SystemVoidCosmosKernel1KernelRunAllBatchFilesSystemStringarray'
+	0 Ldarg
+	1 Ldlen
+	1 Conv_I4
+	1 Newarr
+	1 Stloc
+	0 Ldc_I4
+	1 Stloc
+	0 Br
+	0 Ldloc
+	1 Ldloc
+	2 Ldarg
+	3 Ldfld
+	3 Ldarg
+	4 Ldloc
+	5 Ldelem_Ref
+	4 Callvirt
+	3 Stelem_Ref
+	0 Ldloc
+	1 Ldloc
+	2 Ldelem_Ref
+	1 Branch
+	0 Ldarg
+	1 Ldloc
+	2 Ldelem_Ref
+	1 LdStr
+	2 Call
+	1 Call
+	0 Ret
+	0 Ldloc
+	1 Ldloc
+	2 Ldelem_Ref
+	1 Callvirt
+	1 LdStr
+	2 Callvirt
+	1 Branch
+	0 Ldarg
+	1 Ldloc
+	2 Ldelem_Ref
+	1 LdStr
+	2 Call
+	1 Call
+	0 Ret
+	0 Ldloc
+	1 Ldc_I4
+	2 Add
+	1 Stloc
+	0 Ldloc
+	1 Ldarg
+	2 Ldlen
+	2 Conv_I4
+	2 Branch
+	0 Call
+	1 Stloc
+	0 Ldloc
+	1 Ldloc
+	2 Callvirt
+	0 Ldloc
+	1 Ldarg
+	2 Callvirt
+	0 Ret
+Method 'SystemVoidCosmosKernel1KernelSetVariableSystemString'
+	0 Ldarg
+	1 Ldc_I4
+	2 Newarr
+	2 Stloc
+	1 Ldloc
+	2 Ldc_I4
+	3 Ldc_I4
+	4 Stelem_I2
+	1 Ldloc
+	2 Callvirt
+	1 Stloc
+	0 Ldloc
+	1 Ldlen
+	1 Conv_I4
+	1 Ldc_I4
+	2 Branch
+	0 LdStr
+	1 Call
+	0 Ret
+	0 Ldloc
+	1 Ldc_I4
+	2 Ldelem_Ref
+	1 Callvirt
+	1 Stloc
+	0 Ldloc
+	1 Ldc_I4
+	2 Ldelem_Ref
+	1 Callvirt
+	1 Stloc
+	0 LdStr
+	1 Stloc
+	0 Ldloc
+	1 Ldc_I4
+	2 Newarr
+	2 Stloc
+	1 Ldloc
+	2 Ldc_I4
+	3 Ldc_I4
+	4 Stelem_I2
+	1 Ldloc
+	2 Callvirt
+	1 Ldlen
+	1 Conv_I4
+	1 Ldc_I4
+	2 Branch
+	0 Ldloc
+	1 Stloc
+	0 Br
+	0 Ldarg
+	1 Ldloc
+	2 Call
+	1 Stloc
+	0 Ldloc
+	1 LdStr
+	2 Callvirt
+	1 Ldc_I4
+	2 Branch
+	0 Ldloc
+	1 Call
+	0 Ret
+	0 Ldarg
+	1 Ldfld
+	1 Ldloc
+	2 Ldloc
+	3 Callvirt
 	0 Ret
 Method 'SystemVoidSystemTextUnicodeEncodingctorSystemBooleanSystemBooleanSystemBoolean'
 	0 Ldarg
@@ -13068,6 +13172,95 @@ Method 'SystemInt32CosmosKernel1VariableStorageIndexSystemString'
 	3 Branch
 	1 Ldc_I4
 	2 Ret
+Method 'CosmosKernel1FileCosmosKernel1FileDirectoryFindSystemString'
+	0 Ldarg
+	1 Ldarg
+	2 Call
+	1 Stloc
+	0 Ldloc
+	1 Ldc_I4
+	2 Branch
+	0 Ldarg
+	1 Ldfld
+	1 Ldloc
+	2 Ldelem_Ref
+	1 Ret
+	1 Ldnull
+	2 Ret
+Method 'SystemStringCosmosKernel1FileGetContents'
+	0 Ldarg
+	1 Ldfld
+	1 Ret
+Method 'SystemStringCosmosKernel1FileGetExtension'
+	0 Ldarg
+	1 Ldfld
+	1 Ret
+Method 'CosmosKernel1ThreadManagerCosmosKernel1ThreadManagerGetInstance'
+	0 Ldsfld
+	1 Branch
+	0 Newobj
+	1 Stsfld
+	0 Ldsfld
+	1 Ret
+Method 'SystemVoidCosmosKernel1ThreadManagerAddThreadsCosmosKernel1Filearray'
+	0 Ldc_I4
+	1 Stloc
+	0 Br
+	0 Ldarg
+	1 Ldarg
+	2 Ldloc
+	3 Ldelem_Ref
+	2 Call
+	0 Ldloc
+	1 Ldc_I4
+	2 Add
+	1 Stloc
+	0 Ldloc
+	1 Ldarg
+	2 Ldlen
+	2 Conv_I4
+	2 Branch
+	0 Ret
+Method 'SystemVoidCosmosKernel1ThreadManagerExecuteCosmosKernel1Kernel'
+	0 Ldc_I4
+	1 Stloc
+	0 Br
+	0 Ldc_I4
+	1 Stloc
+	0 Ldc_I4
+	1 Stloc
+	0 Br
+	0 Ldarg
+	1 Ldfld
+	1 Ldloc
+	2 Ldelem_Ref
+	1 Callvirt
+	1 Branch
+	0 Ldloc
+	1 Ldc_I4
+	2 Add
+	1 Stloc
+	0 Br
+	0 Ldarg
+	1 Ldarg
+	2 Ldfld
+	2 Ldloc
+	3 Ldelem_Ref
+	2 Callvirt
+	2 Callvirt
+	0 Ldloc
+	1 Ldc_I4
+	2 Add
+	1 Stloc
+	0 Ldloc
+	1 Ldarg
+	2 Ldfld
+	2 Branch
+	0 Ldloc
+	1 Ldarg
+	2 Ldfld
+	2 Branch
+	0 Ret
 Method 'SystemStringCosmosKernel1KernelExecuteExpressionSystemString'
 	0 Ldc_I4
 	1 Newarr
@@ -13376,25 +13569,6 @@ Method 'SystemVoidCosmosKernel1VariableStorageAddSystemStringSystemString'
 	3 Add
 	2 Stfld
 	0 Ret
-Method 'CosmosKernel1FileCosmosKernel1FileDirectoryFindSystemString'
-	0 Ldarg
-	1 Ldarg
-	2 Call
-	1 Stloc
-	0 Ldloc
-	1 Ldc_I4
-	2 Branch
-	0 Ldarg
-	1 Ldfld
-	1 Ldloc
-	2 Ldelem_Ref
-	1 Ret
-	1 Ldnull
-	2 Ret
-Method 'SystemStringCosmosKernel1FileGetContents'
-	0 Ldarg
-	1 Ldfld
-	1 Ret
 Method 'SystemVoidSystemTextEncodingctorSystemInt32'
 	0 Ldarg
 	1 Ldc_I4
@@ -14992,6 +15166,59 @@ Method 'SystemInt32CosmosKernel1FileDirectoryIndexSystemString'
 	3 Branch
 	1 Ldc_I4
 	2 Ret
+Method 'SystemVoidCosmosKernel1ThreadManagerctor'
+	0 Ldarg
+	1 Call
+	0 Ldarg
+	1 Ldc_I4
+	2 Newarr
+	2 Stfld
+	0 Ldarg
+	1 Ldc_I4
+	2 Stfld
+	0 Ret
+Method 'SystemVoidCosmosKernel1ThreadManagerAddThreadCosmosKernel1File'
+	0 Ldarg
+	1 Newobj
+	1 Stloc
+	0 Ldarg
+	1 Ldfld
+	1 Ldarg
+	2 Ldfld
+	2 Ldloc
+	3 Stelem_Ref
+	0 Ldarg
+	1 Dup
+	2 Ldfld
+	2 Ldc_I4
+	3 Add
+	2 Stfld
+	0 Ret
+Method 'SystemBooleanCosmosKernel1ThreadIsCompleted'
+	0 Ldarg
+	1 Ldfld
+	1 Ldarg
+	2 Ldfld
+	2 Ldlen
+	2 Conv_I4
+	2 Clt
+	1 Ldc_I4
+	2 Ceq
+	1 Ret
+Method 'SystemStringCosmosKernel1ThreadNextCommand'
+	0 Ldarg
+	1 Ldfld
+	1 Ldarg
+	2 Dup
+	3 Ldfld
+	3 Dup
+	4 Stloc
+	3 Ldc_I4
+	4 Add
+	3 Stfld
+	1 Ldloc
+	2 Ldelem_Ref
+	1 Ret
 Method 'SystemStringSystemStringToLower'
 	0 Ldarg
 	1 Call
@@ -16104,6 +16331,31 @@ Method 'SystemStringSystemStringInternalSubStringSystemInt32SystemInt32'
 	1 Stloc
 	0 Ldloc
 	1 Ret
+Method 'SystemVoidCosmosKernel1ThreadManagercctor'
+	0 Ret
+Method 'SystemVoidCosmosKernel1ThreadctorCosmosKernel1File'
+	0 Ldarg
+	1 Call
+	0 Ldarg
+	1 Ldarg
+	2 Stfld
+	0 Ldarg
+	1 Ldarg
+	2 Callvirt
+	2 Ldc_I4
+	3 Newarr
+	3 Stloc
+	2 Ldloc
+	3 Ldc_I4
+	4 Ldc_I4
+	5 Stelem_I2
+	2 Ldloc
+	3 Callvirt
+	2 Stfld
+	0 Ldarg
+	1 Ldc_I4
+	2 Stfld
+	0 Ret
 Method 'SystemInt32CosmosSystemPlugsSystemInt32ImplParseSystemString'
 	0 Nop
 	0 Ldc_I4

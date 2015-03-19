@@ -33,7 +33,7 @@ namespace CosmosKernel1
             ProcessInput(input);
         }
 
-        private void ProcessInput(string input)
+        public void ProcessInput(string input)
         {
             if (input.CompareTo("\n") == 0 || input.CompareTo("") == 0)
             {
@@ -84,16 +84,28 @@ namespace CosmosKernel1
                 }
             }
 
-            // CREATE VARIABLE
-            else if (command.CompareTo("set") == 0)
+            // RUN .BAT
+            else if (command.CompareTo("run") == 0)
+            {
+                RunBatchFile(rest);
+            }
+
+            // RUN .BAT FILES 
+            else if (command.CompareTo("runall") == 0)
+            {
+                RunAllBatchFiles(rest.Split(' '));
+            }
+
+            // CREATE GLOBAL VARIABLE
+            else if (command.CompareTo("shared") == 0)
             {
                 SetVariable(rest);
             }
 
-            // RUN .BAT FILE
-            else if (command.CompareTo("run") == 0)
+            // CREATE VARIABLE
+            else if (input.IndexOf(" = ") != -1)
             {
-                RunBatchFile(rest);
+                SetVariable(input);
             }
 
             // DEFAULT ACTION
@@ -101,6 +113,28 @@ namespace CosmosKernel1
             {
                 Console.WriteLine("Text typed: "+input);
             }
+        }
+
+        private void RunAllBatchFiles(string[] filenames)
+        {
+            File[] batchFiles = new File[filenames.Length];
+            for (int i = 0; i < filenames.Length; i++)
+            {
+                batchFiles[i] = files.Find(filenames[i]);
+                if (batchFiles[i] == null)
+                {
+                    Console.WriteLine(filenames[i] + " does not exist. Please make sure all files exist.");
+                    return;
+                }
+                if (batchFiles[i].GetExtension().CompareTo("bat") != 0)
+                {
+                    Console.WriteLine(filenames[i] + " is not a .bat file. All files must be .bat files.");
+                    return;
+                }
+            }
+            ThreadManager tm = ThreadManager.GetInstance();
+            tm.AddThreads(batchFiles);
+            tm.Execute(this);
         }
 
         private void SetVariable(string expr)
@@ -113,13 +147,21 @@ namespace CosmosKernel1
             }
             string variable = vars[0].Trim();
             string expression = vars[1].Trim();
-            string value = ExecuteExpression(expression);
+            string value = "";
+            if (expression.Split(' ').Length == 1)
+            {
+                value = expression;
+            }
+            else
+            {
+                value = ExecuteExpression(expression);
+            }
             if (value.IndexOf("Error:") != -1)
             {
                 Console.WriteLine(value);
                 return;
             }
-            Console.WriteLine("You have set "+variable + " = " + value);
+            //Console.WriteLine("You have set "+variable + " = " + value);
             variables.Add(variable, value);
         }
 
@@ -274,6 +316,91 @@ namespace CosmosKernel1
         }
     }
 
+    public class ThreadManager
+    {
+        private static ThreadManager instance = null;
+        private const int MAX_THREADS = 100;
+        private int count;
+        private Thread[] threads;
+
+        private ThreadManager()
+        {
+            threads = new Thread[MAX_THREADS];
+            count = 0;
+        }
+
+        public static ThreadManager GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new ThreadManager();
+            }
+            return instance;
+        }
+
+        public void AddThreads(File[] filenames)
+        {
+            for (int i = 0; i < filenames.Length; i++)
+            {
+                AddThread(filenames[i]);
+            }
+        }
+
+        public int GetCount()
+        {
+            return count;
+        }
+
+        public void AddThread(File file)
+        {
+            Thread thread = new Thread(file);
+            threads[count] = thread;
+            count += 1;
+        }
+
+        public void Execute(Kernel kernel)
+        {
+            int skipped_threads = 0;
+            while (skipped_threads < count)
+            {
+                skipped_threads = 0;
+                for (int i = 0; i < count; i++)
+                {
+                    if (threads[i].IsCompleted())
+                    {
+                        skipped_threads++;
+                        continue;
+                    }
+                    kernel.ProcessInput(threads[i].NextCommand());
+                }
+            }
+        }
+    }
+
+    public class Thread
+    {
+        private File file;
+        private string[] commands;
+        private int iterator;
+
+        public Thread(File file)
+        {
+            this.file = file;
+            this.commands = file.GetContents().Split('\n');
+            this.iterator = 0;
+        }
+
+        public string NextCommand()
+        {
+            return commands[iterator++];
+        }
+
+        public bool IsCompleted()
+        {
+            return iterator >= commands.Length;
+        }
+    }
+
     public class File
     {
         private string name;
@@ -298,6 +425,16 @@ namespace CosmosKernel1
         public string GetContents()
         {
             return contents;
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
+
+        public string GetExtension()
+        {
+            return ext;
         }
     }
 
